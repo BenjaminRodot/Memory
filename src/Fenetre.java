@@ -51,7 +51,7 @@ public class Fenetre extends JFrame {
     }
 
     public ImageIcon[] listeImages(){
-        String chemin = "../img";
+        String chemin = "img";
         ImageIcon [] listeImages=new ImageIcon[18];
         try{
             File folder=new File(chemin);
@@ -67,7 +67,7 @@ public class Fenetre extends JFrame {
      public ImageIcon[] listeImagesAleatoire(){
         ImageIcon[] result = new ImageIcon[nbCases];
         ImageIcon[] listeImages = listeImages();
-        ImageIcon death = new ImageIcon("../imgSpecial/death.png");
+        ImageIcon death = new ImageIcon("imgSpecial/death.png");
         int[] temp = new int[nbCartes];
 
         Random r = new Random();
@@ -94,7 +94,7 @@ public class Fenetre extends JFrame {
 
     public ImageIcon[] listeDosImages(){
         ImageIcon[] result = new ImageIcon[nbCases];
-        ImageIcon backCard = new ImageIcon("../imgSpecial/backCard.png");
+        ImageIcon backCard = new ImageIcon("imgSpecial/backCard.png");
         for (int i=0; i<nbCases; i++)
             result[i]=backCard;
         return result;
