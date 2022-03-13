@@ -1,5 +1,11 @@
+import sun.lwawt.macosx.CSystemTray;
+
 import java.awt.event.*;
 import javax.swing.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 import javax.swing.Timer;
@@ -61,8 +67,37 @@ public class ControlButton implements ActionListener {
 
                     if (fen.nbImageTrouvee >= fen.nbCartes*2){
                         System.out.println("fini");
-                        System.out.println(fen.seconde);
                         time.stop();
+
+                        File doc = new File("score/"+fen.nbColonne);
+                        double score1;
+                        double score2;
+                        double score3;
+                        try {
+                            Scanner obj = new Scanner(doc);
+                            score1 = Double.parseDouble(obj.nextLine());
+                            score2 = Double.parseDouble(obj.nextLine());
+                            score3 = Double.parseDouble(obj.nextLine());
+                            if (score1>fen.seconde)
+                                score1=fen.seconde;
+                            else{
+                                if (score2>fen.seconde)
+                                    score2=fen.seconde;
+                                else{
+                                    if (score3>fen.seconde)
+                                        score3=fen.seconde;
+                                }
+                            }
+                            FileWriter writer = new FileWriter("score/"+fen.nbColonne);
+                            System.out.println(score1+"\n"+score2+"\n"+score3);
+                            writer.write(score1+"\n"+score2+"\n"+score3);
+                            writer.close();
+
+                        } catch (FileNotFoundException fileNotFoundException) {
+                            fileNotFoundException.printStackTrace();
+                        } catch (IOException ioException) {
+                            ioException.printStackTrace();
+                        }
                     }
                 }
                 fen.ImageClique = new JButton[1];

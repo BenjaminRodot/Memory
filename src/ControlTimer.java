@@ -17,6 +17,5 @@ public class ControlTimer implements ActionListener {
         fen.seconde+=0.01;
         fen.seconde = Math.round(fen.seconde * 100.0)/100.0;
         fen.Temps.setText("Temps : "+Double.toString(fen.seconde));
-
     }
 }

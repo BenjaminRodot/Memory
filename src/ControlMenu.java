@@ -16,6 +16,5 @@ public class ControlMenu implements ActionListener {
         JMenuItem source = (JMenuItem) (e.getSource());
         int dimension = Integer.parseInt(source.getText());
         fen.changerDimension(dimension);
-
     }
 }
