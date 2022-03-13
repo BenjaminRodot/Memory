@@ -2,6 +2,7 @@ import javax.swing.*; // Pour les composants graphiques que l'on ajoutera dans l
 import java.awt.*;    // Pour la JFrame
 import java.util.Random;
 import java.io.File;
+import javax.swing.Timer;
 
 public class Fenetre extends JFrame {
     public int nbColonne;
@@ -21,6 +22,10 @@ public class Fenetre extends JFrame {
     public JMenuItem itemDimension3;
     public JMenuItem itemDimension4;
     public JMenuItem itemDimension5;
+
+    public JPanel TempsPanel;
+    public JLabel Temps;
+    public double seconde;
 
     public JPanel GrillePanel;
 
@@ -64,7 +69,7 @@ public class Fenetre extends JFrame {
         return listeImages;
     }
 
-     public ImageIcon[] listeImagesAleatoire(){
+    public ImageIcon[] listeImagesAleatoire(){
         ImageIcon[] result = new ImageIcon[nbCases];
         ImageIcon[] listeImages = listeImages();
         ImageIcon death = new ImageIcon("imgSpecial/death.png");
@@ -106,6 +111,7 @@ public class Fenetre extends JFrame {
         nbCases=nbColonne*nbColonne;
         nbCartes = nbCases/2;
         nbImages = 16;
+        seconde = 0;
         nbEssais = nbCases/2;
         nbImageTrouvee=-1;
         ImageClique = new JButton[1];
@@ -125,6 +131,13 @@ public class Fenetre extends JFrame {
         itemDimension3.addActionListener(controlMenu);
         itemDimension4.addActionListener(controlMenu);
         itemDimension5.addActionListener(controlMenu);
+
+        /*---------INIT TEMPS----------*/
+
+        String secondeStr = Double.toString(seconde);
+        TempsPanel = new JPanel();
+        TempsPanel.setLayout(new BoxLayout(TempsPanel, BoxLayout.X_AXIS));
+        Temps = new JLabel("Temps : "+secondeStr);
 
         /*---------INIT GRILLE----------*/
 
@@ -163,6 +176,10 @@ public class Fenetre extends JFrame {
         barMenu.add(menu);
         setJMenuBar(barMenu);
 
+        /*---------PANEL TEMPS----------*/
+
+        TempsPanel.add(Temps);
+
         /*---------PANEL GRILLE----------*/
 
 
@@ -173,6 +190,7 @@ public class Fenetre extends JFrame {
 
         /*---------PANEL GENERAL----------*/
 
+        PanelGeneral.add(TempsPanel);
         PanelGeneral.add(GrillePanel);
         PanelGeneral.add(EssaisPanel);
 

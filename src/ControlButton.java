@@ -35,8 +35,12 @@ public class ControlButton implements ActionListener {
         y=y/145;
         button.setIcon(fen.listeImages[y*nbColonne+x]);
 
+        ControlTimer controltimer = new ControlTimer(fen);
+        Timer time = new Timer(10, controltimer);
+
         if (fen.nbImageTrouvee==-1) {
             fen.nbImageTrouvee = 0;
+            time.start();
         }
 
         if (fen.ImageClique[0]==null)
@@ -57,6 +61,8 @@ public class ControlButton implements ActionListener {
 
                     if (fen.nbImageTrouvee >= fen.nbCartes*2){
                         System.out.println("fini");
+                        System.out.println(fen.seconde);
+                        time.stop();
                     }
                 }
                 fen.ImageClique = new JButton[1];
